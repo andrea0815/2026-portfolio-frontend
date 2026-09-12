@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react"
-
-type Project = {
-    title: string,
-    id: string,
-    description: string,
-}
+import type { Project } from "../types/general"
 
 export default function Projects() {
     const [projects, setProjects] = useState<Project[]>([])
@@ -21,14 +16,47 @@ export default function Projects() {
                     },
                     body: JSON.stringify({
                         query: `
-             {
+            {
   entries(section: "projects") {
     id
     title
     slug
 
     ... on projectSection_Entry {
-      description
+      subtitle
+      description {
+        html
+      }
+      date
+      githubLink {
+        url
+      }
+      websiteLink {
+        url
+      }
+      furtherLink {
+        label
+        linkUrl {
+          url
+        }
+      }
+      thumbnail {
+        url
+        width
+        height
+      }
+      gallery {
+        url
+        width
+        height
+      }
+      categories {
+        title
+      }
+      tools {
+        title
+      }
+      
     }
   }
 }
@@ -51,9 +79,31 @@ export default function Projects() {
         <div>
             {projects.map((project) => (
                 <div key={project.id}>
-                    <h2>{project.title}</h2>
-                    <h2>{project.id}</h2>
-                    <h2>{project.description}</h2>
+                    <h2>{project.title}{project.subtitle ? ` – ${project.subtitle}` : null}</h2>
+                    <p>{project.date}</p>
+                    <img src={project.thumbnail[0].url} alt={project.thumbnail[0].alt} />
+
+                    <div
+                        dangerouslySetInnerHTML={{
+                            __html: project.description?.html || "",
+                        }}
+                    />
+                    <p>
+                        {project.categories.map((category, index) => (
+                            <span key={index}>
+                                {category.title}
+                                {index < project.categories.length - 1 ? ", " : ""}
+                            </span>
+                        ))}
+                    </p>
+                    <p>
+                        {project.tools.map((tool, index) => (
+                            <span key={index}>
+                                {tool.title}
+                                {index < project.tools.length - 1 ? ", " : ""}
+                            </span>
+                        ))}
+                    </p>
                 </div>
             ))}
         </div>
