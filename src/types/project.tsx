@@ -2,10 +2,14 @@ export type Image = {
     url: string,
     alt: string,
     copyright: string,
+    mimeType: string,
     width: Number,
     height: Number,
 }
 
+export type Topic = {
+    title: string
+}
 export type Category = {
     title: string
 }
@@ -13,12 +17,16 @@ export type Tool = {
     title: string
 }
 
+export type ProjectVariables = {
+    topic: String[];
+}
+
 export type Project = {
     id: string,
     title: string,
     slug: string,
     subtitle: string,
-    description: { html: string},
+    description: { html: string },
     date: string,
     githubLink: string,
     websiteLink: string,
@@ -26,5 +34,6 @@ export type Project = {
     thumbnail: Image[],
     gallery: Image[],
     categories: Category[],
+    topics: Topic[],
     tools: Tool[],
 }

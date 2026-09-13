@@ -1,78 +1,25 @@
 import { useEffect, useState } from "react"
-import type { Project } from "../types/general"
+import { getProjects } from "../lib/graphqlClient";
+import type { Project, ProjectVariables } from "../types/project"
+import MediaAsset from "./MediaAsset";
+import type { MimeType } from "../types/Mimetype";
+
 
 export default function Projects() {
     const [projects, setProjects] = useState<Project[]>([])
 
     useEffect(() => {
         async function loadProjects() {
-            const response = await fetch(
-                "https://dashboard.andreawindisch.com/actions/graphql/api",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${import.meta.env.VITE_CRAFT_GRAPHQL_TOKEN}`,
-                    },
-                    body: JSON.stringify({
-                        query: `
-            {
-  entries(section: "projects") {
-    id
-    title
-    slug
+            const variables: ProjectVariables = {
+                topic: ["design", "development"],
+            }
 
-    ... on projectSection_Entry {
-      subtitle
-      description {
-        html
-      }
-      date
-      githubLink {
-        url
-      }
-      websiteLink {
-        url
-      }
-      furtherLink {
-        label
-        linkUrl {
-          url
-        }
-      }
-      thumbnail {
-        url
-        width
-        height
-      }
-      gallery {
-        url
-        width
-        height
-      }
-      categories {
-        title
-      }
-      tools {
-        title
-      }
-      
-    }
-  }
-}
-            `,
-                    }),
-                }
-            )
+            const projects = await getProjects(variables)
 
-            const result = await response.json()
-
-            console.log(result)
-
-            setProjects(result.data.entries)
+            setProjects(projects)
         }
 
-        loadProjects()
+        loadProjects();
     }, [])
 
     return (
@@ -81,8 +28,7 @@ export default function Projects() {
                 <div key={project.id}>
                     <h2>{project.title}{project.subtitle ? ` – ${project.subtitle}` : null}</h2>
                     <p>{project.date}</p>
-                    <img src={project.thumbnail[0].url} alt={project.thumbnail[0].alt} />
-
+                    <MediaAsset type={project.thumbnail[0].mimeType as MimeType} url={project.thumbnail[0].url}/>
                     <div
                         dangerouslySetInnerHTML={{
                             __html: project.description?.html || "",
