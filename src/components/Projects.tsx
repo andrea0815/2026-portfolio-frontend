@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { getProjects } from "../lib/graphqlClient";
 import type { Project, ProjectVariables } from "../types/project"
 import MediaAsset from "./MediaAsset";
-import type { MimeType } from "../types/Mimetype";
+import { MimeType } from "../types/MimeType";
 
 
 export default function Projects() {

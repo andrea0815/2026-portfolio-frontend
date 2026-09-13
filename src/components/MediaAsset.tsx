@@ -1,4 +1,4 @@
-import { MimeType } from '../types/Mimetype';
+import { MimeType } from "../types/MimeType";
 
 type MediaAssetType = {
     type: MimeType,
