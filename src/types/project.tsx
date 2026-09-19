@@ -3,8 +3,8 @@ export type Image = {
     alt: string,
     copyright: string,
     mimeType: string,
-    width: Number,
-    height: Number,
+    width: number,
+    height: number,
 }
 
 export type Topic = {

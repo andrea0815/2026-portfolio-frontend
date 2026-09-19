@@ -1,5 +1,6 @@
 export const MimeType = {
   video: "video/mp4",
+  webm: "video/webm",
   image: "image/jpeg",
   gif: "image/gif",
 } as const

@@ -1,4 +1,59 @@
+// export const PROJECTS_QUERY = `
+// query Projects($topic: [String]) {
+//   entries(
+//     section: "projects"
+//     relatedToCategories: [{
+//       group: ["topics"]
+//       slug: $topic
+//     }]
+//     orderBy: "date DESC"
+//   ) {
+//     id
+//     title
+//     slug
+//   }
+// }
+
+// `
+
 export const PROJECTS_QUERY = `
+query Projects($topic: [String]) {
+  entries(
+    section: "projects"
+    relatedToCategories: [{
+      group: ["topics"]
+      slug: $topic
+    }]
+    orderBy: "date DESC"
+  ) {
+    id
+    title
+    slug
+
+    ... on projectSection_Entry {
+      subtitle
+      date
+
+      thumbnail {
+        url
+        alt
+        mimeType
+        width
+        height
+      }
+
+      categories {
+        title
+        slug
+      }
+    }
+  }
+}
+`;
+
+
+
+export const PROJECTS_QUERY_FULL = `
 query Projects($topic: [String]) {
   entries(
     section: "projects"
