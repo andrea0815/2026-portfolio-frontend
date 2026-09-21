@@ -28,7 +28,7 @@ function MediaAsset({
 
     return (
         <div
-            className="relative w-full overflow-hidden bg-neutral-200"
+            className="relative w-full overflow-hidden"
             style={{
                 aspectRatio: hasDimensions
                     ? `${width} / ${height}`
@@ -36,7 +36,7 @@ function MediaAsset({
             }}
         >
             {!isLoaded && (
-                <div className="absolute inset-0 animate-pulse bg-neutral-300" />
+                <div className="absolute inset-0" />
             )}
 
             {isImage && (

@@ -147,6 +147,7 @@ export function VFXScene({ children }: VFXSceneProps) {
       if (cancelled) return;
 
       vfx = new VFX({
+        scrollPadding: false,
         postEffect: {
           shader: postShader,
         },
