@@ -6,6 +6,43 @@ uniform vec2 offset;
 uniform vec2 resolution;
 uniform float time;
 
+uniform float distortionStrength;
+uniform float distortionPower;
+uniform float baseScale;
+
+uniform float edgeWobbleStrength;
+uniform float edgeWobbleFalloffPower;
+uniform float wobbleSpeed;
+
+uniform float breathingStrength;
+
+uniform float aberrationStrength;
+uniform float aberrationPower;
+
+uniform float vignetteStrength;
+uniform float vignettePower;
+
+uniform float scanlineDensity;
+uniform float scanlineStrength;
+uniform float scanlineSpeedA;
+uniform float scanlineSpeedB;
+
+uniform float phosphorStrength;
+uniform float noiseStrength;
+
+uniform float gridSize;
+uniform float gridStrength;
+
+uniform float glitchSpeed;
+uniform float glitchThreshold;
+uniform float tearStrength;
+uniform float glitchBands;
+
+uniform float jitterStrength;
+
+uniform float flickerStrength;
+uniform float flickerSpeed;
+
 out vec4 outColor;
 
 float random(vec3 p) {
@@ -47,59 +84,6 @@ vec4 sampleWithSoftEdges(vec2 sampleUv, vec2 screenUv) {
 }
 
 void main() {
-
-    // ––––––––––––––––––––––––
-    // TWEAKS
-
-    // CRT curvature
-    float distortionStrength = 0.05;
-    float distortionPower = 3.0;
-    float baseScale = 0.9;
-
-    // Edge wobble
-    float edgeWobbleStrength = 0.002;
-    float edgeWobbleFalloffPower = 2.0;
-    float wobbleStrength = 0.01;
-    float wobbleSpeed = 8.0;
-
-    // Screen breathing
-    float breathingStrength = 0.0007;
-    
-    // Vertical jittering
-    float jitterStrength = 0.0003;
-
-    // Chromatic aberration
-    float aberrationStrength = 0.001;
-    float aberrationPower = 3.0;
-
-    // Vignette
-    float vignetteStrength = 0.1;
-    float vignettePower = 4.0;
-
-    // Scanlines
-    float scanlineDensity = 0.5;
-    float scanlineStrength = 0.08;
-    float scanlineSpeedA = 10.0;
-    float scanlineSpeedB = 35.0;
-
-    // Phosphor
-    float phosphorStrength = 0.08;
-
-    // Grid
-    float gridSize = 50.0;
-    float gridStrength = 0.05;
-
-    // Flicker
-    float flickerStrength = 0.015;
-
-    // Noise
-    float noiseStrength = 0.04;
-
-    // Glitch
-    float glitchSpeed = 2.0;
-    float glitchThreshold = 0.96;
-    float tearStrength = 0.001;
-    float glitchBands = 30.0;
 
     // MAIN SETUP
     // ––––––––––––––––––––––––

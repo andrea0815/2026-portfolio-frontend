@@ -7,6 +7,8 @@ type VFXSceneProps = {
 
 import { passthroughShader } from './shaders/passThroughShader'
 import { postShader } from './shaders/postShader'
+import { createCrtGui } from "./lilGuiInstance";
+import { shaderUniforms } from "./shaderUniforms";
 
 export function VFXScene({ children }: VFXSceneProps) {
   useEffect(() => {
@@ -16,6 +18,9 @@ export function VFXScene({ children }: VFXSceneProps) {
     const registered = new Set<HTMLElement>();
     const waitingImages = new Set<HTMLImageElement>();
     const waitingVideos = new Set<HTMLVideoElement>();
+
+    // Setup Gui
+    const gui = createCrtGui();
 
     function addToVFX(element: HTMLElement) {
       if (!vfx) return;
@@ -148,9 +153,11 @@ export function VFXScene({ children }: VFXSceneProps) {
 
       vfx = new VFX({
         scrollPadding: false,
+
         postEffect: {
           shader: postShader,
-        },
+          uniforms: shaderUniforms
+        }
       });
 
       /**
@@ -190,6 +197,8 @@ export function VFXScene({ children }: VFXSceneProps) {
 
       observer.disconnect();
 
+      gui.destroy();
+
       if (vfx) {
         for (const element of registered) {
           vfx.remove(element);
@@ -200,7 +209,12 @@ export function VFXScene({ children }: VFXSceneProps) {
       waitingImages.clear();
       waitingVideos.clear();
     };
+
+
+
   }, []);
+
+
 
   return children;
 }
