@@ -1,5 +1,3 @@
-import React from 'react';
-
 function TagCategory({ children }: { children: string }) {
     return (
         // <span className='bg-neutral-100 rounded-4xl px-3 py-1 text-sm'>
