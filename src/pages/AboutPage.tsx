@@ -1,4 +1,4 @@
-import Education from "../components/about/education";
+import Education from "../components/about/Education";
 import Intro from "../components/Intro";
 
 function HomePage() {
