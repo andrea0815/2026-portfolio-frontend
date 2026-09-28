@@ -6,9 +6,11 @@ type VFXSceneProps = {
 };
 
 import { passthroughShader } from './shaders/passThroughShader'
+import { blinkShader } from './shaders/blinkShader'
 import { postShader } from './shaders/postShader'
 import { createCrtGui } from "./lilGuiInstance";
 import { shaderUniforms } from "./shaderUniforms";
+import { scaleShader } from "./shaders/scaleShader";
 
 export function VFXScene({ children }: VFXSceneProps) {
   useEffect(() => {
@@ -26,11 +28,28 @@ export function VFXScene({ children }: VFXSceneProps) {
       if (!vfx) return;
       if (registered.has(element)) return;
 
+      const shader = getIndividualShader(element);
+
       vfx.add(element, {
-        shader: passthroughShader,
+        shader: shader,
       });
 
       registered.add(element);
+    }
+
+    function getIndividualShader(element: HTMLElement): string {
+
+      const shader = element.dataset.shader;
+
+      if (shader === "blink") {
+        return blinkShader;
+      }
+
+      if (shader === "scale") {
+        return scaleShader;
+      }
+
+      return passthroughShader;
     }
 
     function registerElement(element: HTMLElement) {

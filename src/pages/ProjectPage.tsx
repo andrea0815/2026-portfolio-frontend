@@ -1,4 +1,6 @@
 import { useParams } from "react-router";
+import ProjectSection from "../components/ProjectSection";
+import VFXSection from "../components/VFXSection";
 
 export default function ProjectPage() {
     const { slug } = useParams();
@@ -7,10 +9,11 @@ export default function ProjectPage() {
         return null;
     }
 
-    return (
-        <main>
 
-            Project
-        </main>
+
+    return (
+        <VFXSection>
+            <ProjectSection slug={slug} />
+        </VFXSection>
     );
 }

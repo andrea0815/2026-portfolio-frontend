@@ -2,13 +2,19 @@
 
 import { Outlet } from "react-router";
 import { VFXScene } from "../utils/vfx/VFXScene";
-import Header from "../components/Header";
+import Header from "../components/header/Header";
 
 export default function RootLayout() {
     return (
-        <VFXScene>
-            <Header />
-            <Outlet />
-        </VFXScene>
+        <>
+            <div className="">
+                <Header />
+                <VFXScene>
+                <main className="flex flex-col items-center">
+                    <Outlet />
+                </main>
+                </VFXScene>
+            </div>
+        </>
     );
 }

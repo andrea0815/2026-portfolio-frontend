@@ -42,6 +42,7 @@
   font-weight: 400;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Recursive";
   src: url("fonts/Recursive-Light.ttf") format("truetype");
@@ -66,9 +67,17 @@
   --spacing-6-7: 45px;
   --spacing-7: 60px;
   --spacing-8: 100px;
+
+  --color-gray-100: #FBF8F8;
+  --color-gray-blue: #F3F2FF;
+  --color-gray-red: #FFF0F0;
 }
 
 @layer base {
+
+  body {
+    scroll-behavior: smooth;
+  }
 
   img,
   video {
@@ -93,6 +102,10 @@
 
   .animation {
     animation: myAnim 3s infinite;
+  }
+
+  canvas[data-engine^="three.js"] {
+    z-index: 10 !important;
   }
 
   @keyframes myAnim {

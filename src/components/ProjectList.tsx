@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { getProjects } from "../lib/graphqlClient";
-import type { Project, ProjectVariables } from "../types/project"
-import MediaAsset from "./atoms/MediaAsset";
-import { MimeType } from "../types/MimeType";
+import type { Project, ProjectsVariables } from "../types/project"
 import ProjectItem from "./ProjectItem";
+import VFXSection from "./VFXSection";
 
 
 
@@ -15,7 +14,7 @@ export default function ProjectList() {
     }, [])
 
     async function loadProjects() {
-        const variables: ProjectVariables = {
+        const variables: ProjectsVariables = {
             topic: ["design", "development"],
         }
 
@@ -25,14 +24,13 @@ export default function ProjectList() {
     }
 
     return (
-        <div className="mx-5 my-8 w-[70%]">
+        <VFXSection id="projects">
             {projects.map((project) => (
                 <React.Fragment key={project.id}>
                     <ProjectItem project={project} />
-                   
                 </ React.Fragment>
             ))
             }
-        </div >
+        </VFXSection>
     )
 }

@@ -1,27 +1,27 @@
 export const crtSettings = {
   // CRT curvature
-  distortionStrength: 0.05,
+  distortionStrength: -0.022,
   distortionPower: 3.0,
-  baseScale: 0.9,
+  baseScale: 1.0,
 
   // Edge wobble
-  edgeWobbleStrength: 0.002,
-  edgeWobbleFalloffPower: 2.0,
-  wobbleSpeed: 8.0,
+  edgeWobbleStrength: 0.0008,
+  edgeWobbleFalloffPower: 1.0,
+  wobbleSpeed: 15.0,
 
   // Screen breathing
-  breathingStrength: 0.0007,
+  breathingStrength: 0.0027,
 
   // Vertical jittering
   jitterStrength: 0.0003,
 
   // Chromatic aberration
-  aberrationStrength: 0.001,
-  aberrationPower: 3.0,
+  aberrationStrength: 0.0003,
+  aberrationPower: 5.5,
 
   // Vignette
-  vignetteStrength: 0.1,
-  vignettePower: 4.0,
+  vignetteStrength: 0.04,
+  vignettePower: 3.0,
 
   // Scanlines
   scanlineDensity: 0.5,

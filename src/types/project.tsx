@@ -17,8 +17,12 @@ export type Tool = {
     title: string
 }
 
-export type ProjectVariables = {
+export type ProjectsVariables = {
     topic: String[];
+}
+
+export type ProjectVariables = {
+    slug: String;
 }
 
 export type Project = {
@@ -28,9 +32,15 @@ export type Project = {
     subtitle: string,
     description: { html: string },
     date: string,
-    githubLink: string,
-    websiteLink: string,
-    furtherLink: string,
+    githubLink: {
+        url: string
+    },
+    websiteLink: {
+        url: string
+    },
+    furtherLink: {
+        url: string
+    },
     thumbnail: Image[],
     gallery: Image[],
     categories: Category[],

@@ -6,6 +6,8 @@ export function createCrtGui() {
         title: "CRT Shader",
     });
 
+    gui.close();
+
     const curvature = gui.addFolder("Curvature");
 
     curvature.add(
